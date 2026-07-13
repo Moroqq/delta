@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #131211; }
+    * { scrollbar-width: none; }
+    *::-webkit-scrollbar { display: none; }
+    :root { --fit-accent: #F0E6D6; --fit-mint: #F0E6D6; }
+    a { color: #F0E6D6; } a:hover { color: #FFF7E8; }
+    input::placeholder { color: rgba(255,255,255,0.3); }
+    @keyframes screenIn { from { opacity: 0; transform: translateY(14px) scale(0.985); } to { opacity: 1; transform: none; } }
+    @keyframes cardIn { from { opacity: 0; transform: translateY(18px) scale(0.99); } to { opacity: 1; transform: none; } }
+    @keyframes drawLine { from { stroke-dashoffset: 600; } to { stroke-dashoffset: 0; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes tabPop { 0% { transform: scale(0.82); } 60% { transform: scale(1.14); } 100% { transform: scale(1); } }
+    @keyframes sheetUp { from { transform: translateY(100%); } to { transform: none; } }
+    @keyframes expandIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+    @keyframes blobA { 0%, 100% { transform: scale(1) translate(0,0); opacity: 0.8; } 50% { transform: scale(1.15) translate(10px,-14px); opacity: 1; } }
+    @keyframes blobB { 0%, 100% { transform: scale(1.1) translate(0,0); opacity: 0.65; } 50% { transform: scale(0.95) translate(-14px,10px); opacity: 0.9; } }
+    @keyframes blobC { 0%, 100% { transform: scale(1) translate(0,0); opacity: 0.6; } 50% { transform: scale(1.18) translate(8px,-10px); opacity: 0.9; } }
+    @keyframes beamBreath { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+  </style>
+</helmet>
+
+<section id="5a" style="display:flex; flex-direction:column; gap:24px; padding:56px; font-family:'Golos Text',sans-serif;">
+  <div style="display:flex; align-items:center; gap:12px;">
+    <a href="#5a" style="text-decoration:none; background:var(--fit-accent); color:#1B1710; font-size:12px; font-weight:600; padding:4px 10px; border-radius:999px;">5a</a>
+    <span style="color:rgba(255,255,255,0.55); font-size:13px;">Spatial Glass v4 · тёплый свет в фоне, прозрачное стекло со светлой кромкой, свечение вместо заливки</span>
+  </div>
+
+  <div style="display:flex; gap:56px; align-items:flex-start;">
+    <div data-screen-label="Прототип Spatial Glass" style="display:flex; flex-direction:column; gap:14px;">
+      <x-import component-from-global-scope="AndroidDevice" from="./android-frame.jsx" dark="{{ true }}" hint-size="428,908">
+        <div style="height:100%; position:relative; color:#F2EFE8; font-family:'Golos Text',sans-serif; overflow:hidden; background:linear-gradient(180deg,#221C15 0%,#171310 48%,#120F0A 100%);">
+
+          <!-- ══ АТМОСФЕРНЫЙ ФОН ══ -->
+          <div style="position:absolute; inset:0; overflow:hidden; pointer-events:none;">
+            <div style="position:absolute; width:540px; height:440px; left:50%; margin-left:-270px; bottom:-200px; border-radius:50%; background:radial-gradient(circle, rgba(246,202,138,0.55) 0%, rgba(246,202,138,0) 68%); filter:blur(38px); animation:blobA 12s ease-in-out infinite;"></div>
+            <div style="position:absolute; width:420px; height:420px; right:-190px; top:22%; border-radius:50%; background:radial-gradient(circle, rgba(240,196,138,0.40) 0%, rgba(240,196,138,0) 66%); filter:blur(42px); animation:blobB 15s ease-in-out infinite;"></div>
+            <div style="position:absolute; width:400px; height:400px; left:-190px; top:-70px; border-radius:50%; background:radial-gradient(circle, rgba(244,222,180,0.32) 0%, rgba(244,222,180,0) 66%); filter:blur(42px); animation:blobC 18s ease-in-out infinite;"></div>
+          </div>
+
+          <div style="position:absolute; inset:0;">
+
+            <!-- ══ ТЕЛО ══ -->
+            <sc-if value="{{ isBody }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%; overflow:auto; padding:16px 18px 104px; display:flex; flex-direction:column; gap:16px; box-sizing:border-box; animation:screenIn 0.35s ease-out;">
+                <div style="display:flex; align-items:baseline; justify-content:space-between;">
+                  <div style="font-size:22px; font-weight:600;">Тело</div>
+                  <div style="font-size:13px; color:rgba(255,255,255,0.5);">Пн, 6 июля</div>
+                </div>
+                <div style="background:rgba(48,42,34,0.34); backdrop-filter:blur(26px) saturate(1.4); -webkit-backdrop-filter:blur(26px) saturate(1.4); border-radius:28px; padding:16px 18px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.32), inset 0 0 0 1px rgba(255,243,219,0.08), 0 30px 70px -26px rgba(0,0,0,0.5); animation:cardIn 0.4s ease-out both; animation-delay:0.05s;">
+                  <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+                    <div>
+                      <div style="font-size:11px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,0.5);">{{ mainLabel }}</div>
+                      <div style="display:flex; align-items:baseline; gap:8px; margin-top:6px;">
+                        <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:54px; font-weight:700; line-height:1; text-shadow:0 0 24px rgba(240,230,214,0.2);">{{ mainNum }}</span>
+                        <span style="font-size:17px; color:rgba(255,255,255,0.55);">{{ mainUnit }}</span>
+                      </div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:5px; background:rgba(240,230,214,0.1); border-radius:999px; padding:6px 12px; margin-top:4px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.22); animation:fadeIn 0.4s ease-out 0.5s both;">
+                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style="{{ deltaArrowStyle }}"><path d="M6 2v8M2.5 6.5 6 10l3.5-3.5" stroke="var(--fit-accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                      <span style="font-size:12.5px; font-weight:600; color:var(--fit-accent); font-variant-numeric:tabular-nums;">{{ deltaText }}</span>
+                    </div>
+                  </div>
+                  <svg width="100%" height="150" viewBox="0 0 348 150" style="margin-top:14px; display:block; overflow:visible;">
+                    <defs>
+                      <linearGradient id="wg4" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#F0E6D6" stop-opacity="0.2"></stop>
+                        <stop offset="1" stop-color="#F0E6D6" stop-opacity="0"></stop>
+                      </linearGradient>
+                    </defs>
+                    <line x1="0" y1="30" x2="348" y2="30" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 5"></line>
+                    <line x1="0" y1="75" x2="348" y2="75" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 5"></line>
+                    <line x1="0" y1="120" x2="348" y2="120" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 5"></line>
+                    <path d="{{ mainFill }}" fill="url(#wg4)" style="animation:fadeIn 0.5s ease-out 0.7s both;"></path>
+                    <path d="{{ mainLine }}" pathLength="600" stroke-dasharray="600" fill="none" stroke="var(--fit-accent)" stroke-width="2" style="filter:drop-shadow(0 0 8px rgba(240,230,214,0.75)); animation:drawLine 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both;"></path>
+                    <g style="animation:fadeIn 0.4s ease-out 0.9s both;">
+                      <circle cx="{{ pt1.cx }}" cy="{{ pt1.cy }}" r="{{ pt1.r }}" style="{{ pt1.style }}"></circle>
+                      <circle cx="{{ pt2.cx }}" cy="{{ pt2.cy }}" r="{{ pt2.r }}" style="{{ pt2.style }}"></circle>
+                      <circle cx="{{ pt3.cx }}" cy="{{ pt3.cy }}" r="{{ pt3.r }}" style="{{ pt3.style }}"></circle>
+                      <circle cx="{{ pt4.cx }}" cy="{{ pt4.cy }}" r="{{ pt4.r }}" style="{{ pt4.style }}"></circle>
+                      <circle cx="{{ pt1.cx }}" cy="{{ pt1.cy }}" r="16" fill="rgba(0,0,0,0.01)" onClick="{{ pt1.onClick }}" style="cursor:pointer;"></circle>
+                      <circle cx="{{ pt2.cx }}" cy="{{ pt2.cy }}" r="16" fill="rgba(0,0,0,0.01)" onClick="{{ pt2.onClick }}" style="cursor:pointer;"></circle>
+                      <circle cx="{{ pt3.cx }}" cy="{{ pt3.cy }}" r="16" fill="rgba(0,0,0,0.01)" onClick="{{ pt3.onClick }}" style="cursor:pointer;"></circle>
+                      <circle cx="{{ pt4.cx }}" cy="{{ pt4.cy }}" r="16" fill="rgba(0,0,0,0.01)" onClick="{{ pt4.onClick }}" style="cursor:pointer;"></circle>
+                    </g>
+                  </svg>
+                  <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:11px; color:rgba(255,255,255,0.4);">
+                    <span>Фев</span><span>Мар</span><span>Апр</span><span>Май</span><span>Июн</span><span>Июл</span>
+                  </div>
+                  <div style="font-size:11.5px; color:rgba(255,255,255,0.4); margin-top:10px; display:flex; align-items:center; gap:6px;">
+                    <span style="width:7px; height:7px; border-radius:50%; background:var(--fit-accent); box-shadow:0 0 8px rgba(240,230,214,0.8); flex:none;"></span>
+                    точки — дни с замером InBody, нажмите для деталей
+                  </div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <sc-for list="{{ miniCards }}" as="m" hint-placeholder-count="4">
+                    <div onClick="{{ m.pick }}" style="{{ m.cardStyle }}">
+                      <div style="font-size:11px; letter-spacing:0.8px; text-transform:uppercase; color:rgba(255,255,255,0.5);">{{ m.label }}</div>
+                      <div style="display:flex; align-items:baseline; gap:4px; margin-top:6px;">
+                        <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:26px; font-weight:600;">{{ m.val }}</span>
+                        <span style="font-size:13px; color:rgba(255,255,255,0.55);">{{ m.unit }}</span>
+                      </div>
+                      <div style="display:flex; align-items:center; justify-content:space-between; margin-top:8px;">
+                        <span style="{{ m.deltaStyle }}">{{ m.delta }}</span>
+                        <svg width="64" height="22" viewBox="0 0 64 22" fill="none"><path d="{{ m.spark }}" stroke="rgba(240,230,214,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"></path></svg>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(46,40,33,0.30); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); border-radius:999px; padding:15px; font-size:14px; font-weight:500; color:rgba(255,255,255,0.9); cursor:pointer; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.38s; transition:transform 0.15s ease;" style-hover="color:var(--fit-accent);" style-active="transform:translateY(2px);">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+                  Добавить замер InBody
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ══ ДИЕТА · ДЕНЬ ══ -->
+            <sc-if value="{{ isDietDay }}" hint-placeholder-val="{{ true }}">
+              <div style="height:100%; overflow:auto; padding:16px 18px 104px; display:flex; flex-direction:column; gap:16px; box-sizing:border-box; animation:screenIn 0.35s ease-out;">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <div style="font-size:22px; font-weight:600;">Диета</div>
+                  <div onClick="{{ openPlan }}" style="display:flex; align-items:center; gap:4px; font-size:13px; font-weight:600; color:var(--fit-accent); cursor:pointer; padding:6px 0; text-shadow:0 0 14px rgba(240,230,214,0.4);">
+                    Мой план
+                    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3.5 9 7l-4 3.5" stroke="var(--fit-accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </div>
+                </div>
+                <div style="background:rgba(48,42,34,0.34); backdrop-filter:blur(26px) saturate(1.4); -webkit-backdrop-filter:blur(26px) saturate(1.4); border-radius:28px; padding:14px 18px; display:flex; align-items:center; gap:20px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.32), inset 0 0 0 1px rgba(255,243,219,0.08), 0 30px 70px -26px rgba(0,0,0,0.5); animation:cardIn 0.4s ease-out both; animation-delay:0.05s;">
+                  <div style="position:relative; width:132px; height:132px; flex:none;">
+                    <svg width="132" height="132" viewBox="0 0 140 140" style="overflow:visible;">
+                      <circle cx="70" cy="70" r="62" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"></circle>
+                      <circle cx="70" cy="70" r="62" fill="none" stroke="var(--fit-accent)" stroke-width="12" stroke-linecap="round" stroke-dasharray="{{ ringDash }}" transform="rotate(-90 70 70)" opacity="0.22" style="filter:blur(11px); transition:stroke-dasharray 0.7s cubic-bezier(0.22,1,0.36,1);"></circle>
+                      <circle cx="70" cy="70" r="62" fill="none" stroke="var(--fit-accent)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="{{ ringDash }}" transform="rotate(-90 70 70)" style="filter:drop-shadow(0 0 7px rgba(240,230,214,0.9)); transition:stroke-dasharray 0.7s cubic-bezier(0.22,1,0.36,1);"></circle>
+                    </svg>
+                    <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:27px; font-weight:700; line-height:1;">{{ calNum }}</span>
+                      <span style="font-size:11px; color:rgba(255,255,255,0.5); font-variant-numeric:tabular-nums;">из 1 950 ккал</span>
+                    </div>
+                  </div>
+                  <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
+                    <div style="display:flex; flex-direction:column; gap:5px;">
+                      <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:rgba(255,255,255,0.75);">Белки</span><span style="color:rgba(255,255,255,0.5); font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums;">{{ pText }}</span></div>
+                      <div style="height:6px; border-radius:3px; background:rgba(0,0,0,0.28); box-shadow:inset 0 1px 3px rgba(0,0,0,0.4);"><div style="{{ pBarStyle }}"></div></div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:5px;">
+                      <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:rgba(255,255,255,0.75);">Жиры</span><span style="color:rgba(255,255,255,0.5); font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums;">{{ fText }}</span></div>
+                      <div style="height:6px; border-radius:3px; background:rgba(0,0,0,0.28); box-shadow:inset 0 1px 3px rgba(0,0,0,0.4);"><div style="{{ fBarStyle }}"></div></div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:5px;">
+                      <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:rgba(255,255,255,0.75);">Углеводы</span><span style="color:rgba(255,255,255,0.5); font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums;">{{ cText }}</span></div>
+                      <div style="height:6px; border-radius:3px; background:rgba(0,0,0,0.28); box-shadow:inset 0 1px 3px rgba(0,0,0,0.4);"><div style="{{ cBarStyle }}"></div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="font-size:11px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:4px; animation:fadeIn 0.4s ease-out 0.15s both;">Приёмы пищи</div>
+                <sc-for list="{{ meals }}" as="meal" hint-placeholder-count="4">
+                  <div style="{{ meal.cardStyle }}" onClick="{{ meal.expand }}">
+                    <div style="display:flex; gap:12px;">
+                      <div onClick="{{ meal.toggle }}" style="width:30px; height:30px; border-radius:50%; border:1.5px solid rgba(255,243,219,0.3); position:relative; flex:none; display:flex; align-items:center; justify-content:center; margin-top:0; transition:transform 0.15s ease;" style-active="transform:scale(0.86);">
+                        <div style="{{ meal.fillStyle }}"></div>
+                        <svg width="13" height="13" viewBox="0 0 12 12" style="position:relative;"><path d="M2.5 6.5 5 9l4.5-6" pathLength="20" stroke-dasharray="20" fill="none" stroke="#0B0C0A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="{{ meal.markStyle }}"></path></svg>
+                      </div>
+                      <div style="flex:1; min-width:0;">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                          <span style="font-size:15px; font-weight:600;">{{ meal.title }}</span>
+                          <sc-if value="{{ meal.isCurrent }}" hint-placeholder-val="{{ false }}">
+                            <span style="font-size:10px; font-weight:600; color:#1B1710; background:linear-gradient(180deg,#FAF2E2,#EBDCC2); padding:3px 9px; border-radius:999px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.8), 0 0 14px rgba(240,230,214,0.4);">Сейчас</span>
+                          </sc-if>
+                          <span style="flex:1;"></span>
+                          <span style="{{ meal.timeStyle }}">{{ meal.time }}</span>
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="{{ meal.chevStyle }}"><path d="M3.5 5.5 7 9l3.5-3.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </div>
+                        <div style="font-size:13px; color:rgba(255,255,255,0.6); margin-top:4px; line-height:1.4;">{{ meal.dishes }}</div>
+                        <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:12.5px; color:rgba(255,255,255,0.5); margin-top:6px; letter-spacing:0.2px;">{{ meal.kbju }}</div>
+                      </div>
+                    </div>
+                    <sc-if value="{{ meal.isOpen }}" hint-placeholder-val="{{ false }}">
+                      <div style="margin-top:12px; margin-left:36px; border-top:1px solid rgba(255,255,255,0.08); display:flex; flex-direction:column; animation:expandIn 0.25s ease-out;">
+                        <sc-for list="{{ meal.items }}" as="dish" hint-placeholder-count="2">
+                          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+                            <div style="flex:1; min-width:0;">
+                              <div style="font-size:13.5px; color:rgba(255,255,255,0.92);">{{ dish.name }}</div>
+                              <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:12px; color:rgba(255,255,255,0.5); margin-top:3px;">{{ dish.info }}</div>
+                            </div>
+                            <div onClick="{{ dish.swap }}" style="flex:none; font-size:12px; font-weight:500; color:var(--fit-accent); background:rgba(255,255,255,0.06); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-radius:999px; padding:6px 13px; cursor:pointer; box-shadow:inset 0 1px 0 rgba(255,243,219,0.22), inset 0 0 0 1px rgba(255,243,219,0.08); transition:transform 0.15s ease;" style-active="transform:translateY(1.5px) scale(0.97);">заменить</div>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+
+                <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); border-radius:22px; padding:12px 15px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.4s;">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                    <span style="font-size:13.5px; font-weight:600;">Задачи на день</span>
+                    <span style="font-size:11.5px; color:var(--fit-mint); font-weight:600; font-variant-numeric:tabular-nums;">{{ tasksDone }} из 3</span>
+                  </div>
+                  <div style="display:flex; flex-direction:column; margin-top:6px;">
+                    <sc-for list="{{ tasks }}" as="task" hint-placeholder-count="3">
+                      <div onClick="{{ task.toggle }}" style="display:flex; align-items:center; gap:10px; padding:7px 0; cursor:pointer;">
+                        <div style="width:20px; height:20px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); position:relative; flex:none; display:flex; align-items:center; justify-content:center; transition:transform 0.15s ease;" style-active="transform:scale(0.86);">
+                          <div style="{{ task.fillStyle }}"></div>
+                          <svg width="10" height="10" viewBox="0 0 12 12" style="position:relative;"><path d="M2.5 6.5 5 9l4.5-6" pathLength="20" stroke-dasharray="20" fill="none" stroke="#0B0C0A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="{{ task.markStyle }}"></path></svg>
+                        </div>
+                        <span style="{{ task.textStyle }}">{{ task.label }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+
+                <div style="display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(180deg,#F4EAD6,#F0E4CD); color:#1B1710; border-radius:999px; padding:15px; font-size:14.5px; font-weight:600; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.18); transition:transform 0.15s ease; animation:cardIn 0.4s ease-out both; animation-delay:0.46s;" style-active="transform:translateY(1px); box-shadow:0 1px 1px rgba(0,0,0,0.15);">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1B1710" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5c0-1.1.9-2 2-2h1.5l1.4-2h6.2l1.4 2H18a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8.5Z"></path><circle cx="12" cy="12.5" r="3.4"></circle></svg>
+                  Сканировать этикетку
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ══ ДИЕТА · МОЙ ПЛАН ══ -->
+            <sc-if value="{{ isDietPlan }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%; overflow:auto; padding:16px 18px 104px; display:flex; flex-direction:column; gap:16px; box-sizing:border-box; animation:screenIn 0.35s ease-out;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <div onClick="{{ closePlan }}" style="width:38px; height:38px; border-radius:50%; background:rgba(46,40,33,0.34); backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; box-shadow:inset 0 1px 0 rgba(255,243,219,0.3), inset 0 0 0 1px rgba(255,243,219,0.08), 0 16px 36px -14px rgba(0,0,0,0.42); transition:transform 0.15s ease;" style-active="transform:translateY(1.5px);">
+                    <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M9 3.5 5 7l4 3.5" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </div>
+                  <div style="font-size:19px; font-weight:600;">Мой план питания</div>
+                </div>
+
+                <div style="background:rgba(48,42,34,0.36); backdrop-filter:blur(26px) saturate(1.4); -webkit-backdrop-filter:blur(26px) saturate(1.4); border-radius:28px; padding:14px 18px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.34), inset 0 0 0 1px rgba(240,230,214,0.12), 0 24px 48px -16px rgba(0,0,0,0.55), 0 0 32px -8px rgba(240,230,214,0.15); animation:cardIn 0.4s ease-out both; animation-delay:0.05s;">
+                  <div style="font-size:17px; font-weight:600;">Сушка · дефицит 500 ккал</div>
+                  <div style="font-size:12.5px; color:rgba(255,255,255,0.5); margin-top:3px;">целевые КБЖУ на день</div>
+                  <div style="display:flex; gap:0; margin-top:12px;">
+                    <div style="flex:1.4; text-align:center; padding:4px 0;">
+                      <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:17px; font-weight:700;">1 950</div>
+                      <div style="font-size:10.5px; color:rgba(255,255,255,0.5); margin-top:2px;">ккал</div>
+                    </div>
+                    <div style="flex:1; text-align:center; padding:4px 0; border-left:1px solid rgba(255,255,255,0.09);">
+                      <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:17px; font-weight:700; color:var(--fit-accent); text-shadow:0 0 12px rgba(240,230,214,0.5);">150</div>
+                      <div style="font-size:10.5px; color:rgba(255,255,255,0.5); margin-top:2px;">белки, г</div>
+                    </div>
+                    <div style="flex:1; text-align:center; padding:4px 0; border-left:1px solid rgba(255,255,255,0.09);">
+                      <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:17px; font-weight:700;">65</div>
+                      <div style="font-size:10.5px; color:rgba(255,255,255,0.5); margin-top:2px;">жиры, г</div>
+                    </div>
+                    <div style="flex:1; text-align:center; padding:4px 0; border-left:1px solid rgba(255,255,255,0.09);">
+                      <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:17px; font-weight:700;">150</div>
+                      <div style="font-size:10.5px; color:rgba(255,255,255,0.5); margin-top:2px;">углеводы, г</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border-radius:26px; padding:14px 18px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.12s;">
+                  <div style="font-size:14px; font-weight:600; margin-bottom:10px;">Меню на неделю</div>
+                  <div style="display:flex; flex-direction:column;">
+                    <div style="display:flex; gap:12px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:baseline;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-size:12.5px; font-weight:600; color:var(--fit-accent); width:26px; flex:none; text-shadow:0 0 10px rgba(240,230,214,0.45);">Пн</span>
+                      <span style="font-size:13px; color:rgba(255,255,255,0.88);">Овсянка · курица с гречкой · лосось</span>
+                    </div>
+                    <div style="display:flex; gap:12px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:baseline;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.5); width:26px; flex:none;">Вт</span>
+                      <span style="font-size:13px; color:rgba(255,255,255,0.62);">Омлет · индейка с рисом · треска</span>
+                    </div>
+                    <div style="display:flex; gap:12px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:baseline;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.5); width:26px; flex:none;">Ср</span>
+                      <span style="font-size:13px; color:rgba(255,255,255,0.62);">Сырники · говядина с булгуром · творог</span>
+                    </div>
+                    <div style="display:flex; gap:12px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:baseline;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.5); width:26px; flex:none;">Чт</span>
+                      <span style="font-size:13px; color:rgba(255,255,255,0.62);">Овсянка · курица с макаронами · судак</span>
+                    </div>
+                    <div style="display:flex; gap:12px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:baseline;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.5); width:26px; flex:none;">Пт</span>
+                      <span style="font-size:13px; color:rgba(255,255,255,0.62);">Омлет · говядина с гречкой · креветки</span>
+                    </div>
+                    <div style="display:flex; gap:12px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:baseline;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.5); width:26px; flex:none;">Сб</span>
+                      <span style="font-size:13px; color:rgba(255,255,255,0.62);">Сырники · индейка с киноа · лосось</span>
+                    </div>
+                    <div style="display:flex; gap:12px; padding:8px 0; align-items:baseline;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.5); width:26px; flex:none;">Вс</span>
+                      <span style="font-size:13px; color:rgba(255,255,255,0.62);">Свободный приём · разгрузка</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border-radius:26px; padding:14px 18px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.19s;">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:var(--fit-accent); box-shadow:0 0 10px rgba(240,230,214,0.9);"></div>
+                    <span style="font-size:14px; font-weight:600;">Рекомендации ИИ</span>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:10px;">
+                    <div style="font-size:13px; line-height:1.45; color:rgba(255,255,255,0.78);">Вода выросла на 0,8 % за две недели — сократите соль до 3 г в день.</div>
+                    <div style="font-size:13px; line-height:1.45; color:rgba(255,255,255,0.78);">До целевого белка не хватает ~20 г — добавьте их в завтрак.</div>
+                    <div style="font-size:13px; line-height:1.45; color:rgba(255,255,255,0.78);">В день тренировки перенесите углеводы из ужина в перекус.</div>
+                  </div>
+                </div>
+
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(180deg,#FAF2E2,#EBDCC2); color:#1B1710; border-radius:999px; padding:15px; font-size:14.5px; font-weight:600; cursor:pointer; box-shadow:inset 0 1px 0 rgba(255,255,255,0.85), 0 0 28px rgba(240,230,214,0.28), 0 20px 44px -18px rgba(0,0,0,0.45); transition:transform 0.15s ease; animation:cardIn 0.4s ease-out both; animation-delay:0.26s;" style-active="transform:translateY(2px); box-shadow:inset 0 2px 6px rgba(0,0,0,0.2), 0 0 16px rgba(240,230,214,0.2);">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#1B1710" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.5v2.7h-2.7"></path></svg>
+                  Пересобрать план с ИИ
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ══ ТРЕНИРОВКИ · СПИСОК ══ -->
+            <sc-if value="{{ isTrainList }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%; overflow:auto; padding:16px 18px 104px; display:flex; flex-direction:column; gap:16px; box-sizing:border-box; animation:screenIn 0.35s ease-out;">
+                <div style="display:flex; align-items:baseline; justify-content:space-between;">
+                  <div style="font-size:22px; font-weight:600;">Тренировки</div>
+                  <div style="font-size:13px; color:rgba(255,255,255,0.5);">Неделя 28</div>
+                </div>
+                <div style="display:flex; background:rgba(42,37,30,0.30); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border-radius:999px; padding:4px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.2), inset 0 0 0 1px rgba(255,243,219,0.07); animation:cardIn 0.4s ease-out both; animation-delay:0.05s;">
+                  <div onClick="{{ setBulk }}" style="{{ bulkStyleI }}">Набор массы</div>
+                  <div onClick="{{ setCut }}" style="{{ cutStyleI }}">Сушка</div>
+                </div>
+                <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); border-radius:24px; padding:13px 16px; display:flex; align-items:center; gap:14px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.11s;">
+                  <div style="width:38px; height:38px; border-radius:50%; background:rgba(240,230,214,0.12); display:flex; align-items:center; justify-content:center; flex:none; box-shadow:inset 0 1px 0 rgba(255,243,219,0.26);">
+                    <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5 5.5 10.5 11.5 3.5" stroke="var(--fit-mint)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="font-size:15px; font-weight:600;">Пн · Грудь + трицепс</div>
+                    <div style="font-size:12.5px; color:rgba(255,255,255,0.5); margin-top:3px; font-variant-numeric:tabular-nums;">47 мин · 6 упражнений · 12 340 кг</div>
+                  </div>
+                  <span style="font-size:11px; font-weight:600; color:var(--fit-mint); background:rgba(240,230,214,0.1); padding:5px 11px; border-radius:999px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);">Готово</span>
+                </div>
+                <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(30px) saturate(1.5); -webkit-backdrop-filter:blur(30px) saturate(1.5); border-radius:30px; padding:18px; display:flex; flex-direction:column; gap:14px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.42), inset 0 0 0 1px rgba(240,230,214,0.30), 0 0 30px -4px rgba(240,230,214,0.28), 0 30px 70px -26px rgba(0,0,0,0.5); transform:translateY(-2px); animation:cardIn 0.4s ease-out both; animation-delay:0.17s;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <span style="font-size:15px; font-weight:600;">Вт · Спина + бицепс</span>
+                    <span style="font-size:11px; font-weight:600; color:#1B1710; background:linear-gradient(180deg,#F4EAD6,#F0E4CD); padding:5px 11px; border-radius:999px; box-shadow:0 1px 2px rgba(0,0,0,0.15);">Сегодня</span>
+                  </div>
+                  <div style="display:flex; flex-direction:column;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.07);">
+                      <div><div style="font-size:14px;">Тяга верхнего блока</div><div style="font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px;">Блочный тренажёр</div></div>
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:14px; font-weight:600; color:rgba(255,255,255,0.75);">4×10</span>
+                    </div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.07);">
+                      <div><div style="font-size:14px;">Тяга штанги в наклоне</div><div style="font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px;">Штанга</div></div>
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:14px; font-weight:600; color:rgba(255,255,255,0.75);">4×8</span>
+                    </div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.07);">
+                      <div><div style="font-size:14px;">Тяга горизонтального блока</div><div style="font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px;">Блочный тренажёр</div></div>
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:14px; font-weight:600; color:rgba(255,255,255,0.75);">3×12</span>
+                    </div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 0;">
+                      <div><div style="font-size:14px;">Сгибания на бицепс</div><div style="font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px;">Гантели</div></div>
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:14px; font-weight:600; color:rgba(255,255,255,0.75);">3×12</span>
+                    </div>
+                  </div>
+                  <div onClick="{{ startWorkout }}" style="display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#F4EAD6,#F0E4CD); color:#1B1710; border-radius:999px; padding:14px; font-size:14.5px; font-weight:600; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.18); transition:transform 0.15s ease;" style-active="transform:translateY(1px); box-shadow:0 1px 1px rgba(0,0,0,0.15);">Начать тренировку</div>
+                </div>
+                <div style="border:1px dashed rgba(255,255,255,0.12); border-radius:26px; padding:15px 16px; display:flex; align-items:center; justify-content:space-between; animation:cardIn 0.4s ease-out both; animation-delay:0.23s;">
+                  <span style="font-size:14px; color:rgba(255,255,255,0.45);">Ср · Отдых</span>
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M13.5 9.5A6 6 0 0 1 6.5 2.5a6 6 0 1 0 7 7Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.3" stroke-linejoin="round"></path></svg>
+                </div>
+                <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); border-radius:24px; padding:13px 16px; display:flex; align-items:center; justify-content:space-between; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.29s;">
+                  <span style="font-size:15px; font-weight:500;">Чт · Ноги</span>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:12.5px; color:rgba(255,255,255,0.45);">5 упражнений</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3.5 9 7l-4 3.5" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </div>
+                </div>
+                <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); border-radius:24px; padding:13px 16px; display:flex; align-items:center; justify-content:space-between; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.35s;">
+                  <span style="font-size:15px; font-weight:500;">Пт · Плечи + руки</span>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:12.5px; color:rgba(255,255,255,0.45);">6 упражнений</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3.5 9 7l-4 3.5" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ══ ТРЕНИРОВКИ · АКТИВНАЯ ══ -->
+            <sc-if value="{{ isTrainActive }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%; overflow:auto; padding:16px 18px 104px; display:flex; flex-direction:column; gap:16px; box-sizing:border-box; animation:screenIn 0.35s ease-out;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <div onClick="{{ endWorkout }}" style="width:38px; height:38px; border-radius:50%; background:rgba(46,40,33,0.34); backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; box-shadow:inset 0 1px 0 rgba(255,243,219,0.3), inset 0 0 0 1px rgba(255,243,219,0.08), 0 16px 36px -14px rgba(0,0,0,0.42); transition:transform 0.15s ease;" style-active="transform:translateY(1.5px);">
+                    <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M9 3.5 5 7l4 3.5" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="font-size:19px; font-weight:600;">Спина + бицепс</div>
+                    <div style="display:flex; align-items:center; gap:6px; margin-top:2px;">
+                      <span style="width:6px; height:6px; border-radius:50%; background:var(--fit-accent); box-shadow:0 0 8px rgba(240,230,214,0.9);"></span>
+                      <span style="font-size:12px; color:rgba(255,255,255,0.5); font-variant-numeric:tabular-nums;">идёт 24 мин · подход 2 из 14</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="font-size:11.5px; color:rgba(255,255,255,0.4); animation:fadeIn 0.4s ease-out 0.1s both;">тап по упражнению — прогресс рабочего веса</div>
+
+                <sc-for list="{{ exercises }}" as="ex" hint-placeholder-count="4">
+                  <div style="{{ ex.cardStyle }}">
+                    <div onClick="{{ ex.open }}" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;">
+                      <div>
+                        <div style="font-size:15px; font-weight:600;">{{ ex.name }}</div>
+                        <div style="font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px;">{{ ex.equip }}</div>
+                      </div>
+                      <div style="display:flex; align-items:center; gap:6px;">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2.5 12.5 6 8l3 2.5 4.5-6" stroke="rgba(240,230,214,0.75)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3.5 9 7l-4 3.5" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                      </div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; margin-top:10px;">
+                      <sc-for list="{{ ex.sets }}" as="st" hint-placeholder-count="3">
+                        <div style="display:flex; align-items:center; gap:8px; padding:6px 0; border-top:1px solid rgba(255,255,255,0.06);">
+                          <span style="width:14px; font-size:11.5px; color:rgba(255,255,255,0.35); font-family:'Space Grotesk','Golos Text',sans-serif;">{{ st.idx }}</span>
+                          <input value="{{ st.w }}" onChange="{{ st.onW }}" onClick="{{ st.stop }}" inputmode="decimal" style="width:52px; background:rgba(0,0,0,0.25); border:none; box-shadow:inset 0 2px 5px rgba(0,0,0,0.35), inset 0 -1px 0 rgba(255,255,255,0.05); border-radius:12px; color:#F2EFE8; font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:14px; font-weight:600; text-align:center; padding:8px 4px; outline:none;">
+                          <span style="font-size:12px; color:rgba(255,255,255,0.45); white-space:nowrap;">кг ×</span>
+                          <input value="{{ st.r }}" onChange="{{ st.onR }}" onClick="{{ st.stop }}" inputmode="numeric" style="width:38px; background:rgba(0,0,0,0.25); border:none; box-shadow:inset 0 2px 5px rgba(0,0,0,0.35), inset 0 -1px 0 rgba(255,255,255,0.05); border-radius:12px; color:#F2EFE8; font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:14px; font-weight:600; text-align:center; padding:8px 4px; outline:none;">
+                          <span style="{{ st.arrowStyle }}">▲</span>
+                          <span style="flex:1;"></span>
+                          <span style="font-size:11.5px; color:rgba(255,255,255,0.36); font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; white-space:nowrap;">{{ st.last }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-for>
+
+                <div style="display:flex; align-items:stretch; gap:10px; animation:cardIn 0.4s ease-out both; animation-delay:0.4s;">
+                  <div onClick="{{ endWorkout }}" style="flex:1; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#F4EAD6,#F0E4CD); color:#1B1710; border-radius:999px; padding:15px; font-size:14.5px; font-weight:600; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.18); transition:transform 0.15s ease;" style-active="transform:translateY(1px); box-shadow:0 1px 1px rgba(0,0,0,0.15);">Завершить тренировку</div>
+                  <div onClick="{{ openTimer }}" style="width:50px; border-radius:999px; background:rgba(46,40,33,0.34); backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; box-shadow:inset 0 1px 0 rgba(255,243,219,0.3), inset 0 0 0 1px rgba(255,243,219,0.08); transition:transform 0.15s ease;" style-active="transform:scale(0.94);">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7"></circle><path d="M12 10.5v3.5l2.3 1.6M10 3h4M12 3v3.5"></path></svg>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ══ ТРЕНИРОВКИ · ПРОГРЕСС УПРАЖНЕНИЯ ══ -->
+            <sc-if value="{{ isTrainProgress }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%; overflow:auto; padding:16px 18px 104px; display:flex; flex-direction:column; gap:16px; box-sizing:border-box; animation:screenIn 0.35s ease-out;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <div onClick="{{ closeProgress }}" style="width:38px; height:38px; border-radius:50%; background:rgba(46,40,33,0.34); backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; box-shadow:inset 0 1px 0 rgba(255,243,219,0.3), inset 0 0 0 1px rgba(255,243,219,0.08), 0 16px 36px -14px rgba(0,0,0,0.42); transition:transform 0.15s ease;" style-active="transform:translateY(1.5px);">
+                    <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M9 3.5 5 7l4 3.5" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </div>
+                  <div>
+                    <div style="font-size:19px; font-weight:600;">{{ prog.name }}</div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px;">прогресс рабочего веса · 7 недель</div>
+                  </div>
+                </div>
+
+                <div style="background:rgba(48,42,34,0.34); backdrop-filter:blur(26px) saturate(1.4); -webkit-backdrop-filter:blur(26px) saturate(1.4); border-radius:28px; padding:16px 18px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.32), inset 0 0 0 1px rgba(255,243,219,0.08), 0 30px 70px -26px rgba(0,0,0,0.5); animation:cardIn 0.4s ease-out both; animation-delay:0.05s;">
+                  <div style="display:flex; align-items:baseline; gap:8px;">
+                    <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:40px; font-weight:700; line-height:1; text-shadow:0 0 20px rgba(240,230,214,0.2);">{{ prog.cur }}</span>
+                    <span style="font-size:15px; color:rgba(255,255,255,0.55);">кг сейчас</span>
+                    <span style="flex:1;"></span>
+                    <span style="font-size:12.5px; font-weight:600; color:var(--fit-mint); font-variant-numeric:tabular-nums;">{{ prog.delta }}</span>
+                  </div>
+                  <svg width="100%" height="150" viewBox="0 0 348 150" style="margin-top:16px; display:block; overflow:visible;">
+                    <line x1="0" y1="25" x2="348" y2="25" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 5"></line>
+                    <line x1="0" y1="72" x2="348" y2="72" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 5"></line>
+                    <line x1="0" y1="120" x2="348" y2="120" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 5"></line>
+                    <path d="{{ prog.path }}" pathLength="600" stroke-dasharray="600" fill="none" stroke="var(--fit-accent)" stroke-width="2" stroke-linejoin="round" style="filter:drop-shadow(0 0 8px rgba(240,230,214,0.75)); animation:drawLine 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s both;"></path>
+                    <path d="{{ prog.dots }}" stroke="var(--fit-accent)" stroke-width="7" stroke-linecap="round" style="filter:drop-shadow(0 0 6px rgba(240,230,214,0.85)); animation:fadeIn 0.4s ease-out 0.8s both;"></path>
+                  </svg>
+                  <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:11px; color:rgba(255,255,255,0.4);">
+                    <span>Н1</span><span>Н2</span><span>Н3</span><span>Н4</span><span>Н5</span><span>Н6</span><span>Н7</span>
+                  </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); border-radius:22px; padding:13px 15px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.14s;">
+                    <div style="font-size:11px; letter-spacing:0.8px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Лучший результат</div>
+                    <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:21px; font-weight:600; margin-top:8px;">{{ prog.best }}</div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.45); margin-top:4px;">30 июня</div>
+                  </div>
+                  <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); border-radius:22px; padding:13px 15px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.2s;">
+                    <div style="font-size:11px; letter-spacing:0.8px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Суммарный тоннаж</div>
+                    <div style="display:flex; align-items:baseline; gap:4px; margin-top:8px;">
+                      <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:21px; font-weight:600;">{{ prog.ton }}</span>
+                      <span style="font-size:13px; color:rgba(255,255,255,0.55);">кг</span>
+                    </div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.45); margin-top:4px;">за 7 недель</div>
+                  </div>
+                </div>
+
+                <div style="background:rgba(46,40,33,0.30); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); border-radius:22px; padding:13px 16px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42); animation:cardIn 0.4s ease-out both; animation-delay:0.26s;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:var(--fit-accent); box-shadow:0 0 10px rgba(240,230,214,0.9); flex:none;"></div>
+                    <span style="font-size:13.5px; font-weight:600;">Совет ИИ</span>
+                  </div>
+                  <div style="font-size:13px; line-height:1.45; color:rgba(255,255,255,0.78); margin-top:8px;">{{ prog.tip }}</div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ══ ИИ-ЧАТ · ПУСТОЕ СОСТОЯНИЕ ══ -->
+            <sc-if value="{{ isChatEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%; display:flex; flex-direction:column; overflow:hidden; animation:screenIn 0.35s ease-out; position:relative;">
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:0 24px 90px; position:relative;">
+                  <!-- луч света -->
+                  <div style="position:relative; width:100%; height:230px; display:flex; align-items:flex-end; justify-content:center; pointer-events:none;">
+                    <div style="position:absolute; left:50%; top:0; transform:translateX(-50%); width:190px; height:230px; background:radial-gradient(ellipse 42% 58% at 50% 42%, rgba(246,237,219,0.22), rgba(246,237,219,0) 70%); filter:blur(8px); animation:beamBreath 5s ease-in-out infinite;"></div>
+                    <div style="position:absolute; left:50%; top:8px; transform:translateX(-50%); width:2.5px; height:190px; background:linear-gradient(180deg, rgba(246,237,219,0) 0%, rgba(246,237,219,0.95) 45%, rgba(246,237,219,0) 100%); box-shadow:0 0 22px 5px rgba(246,237,219,0.35); animation:beamBreath 5s ease-in-out infinite;"></div>
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" style="position:relative; margin-bottom:8px; filter:drop-shadow(0 0 12px rgba(246,237,219,0.8));"><path d="M12 2c.7 5 5 9.3 10 10-5 .7-9.3 5-10 10-.7-5-5-9.3-10-10 5-.7 9.3-5 10-10Z" fill="#F5ECDA"></path></svg>
+                  </div>
+                  <div style="font-size:26px; font-weight:600; text-align:center; text-shadow:0 0 30px rgba(246,237,219,0.3);">Чем помочь?</div>
+                  <div style="font-size:13px; color:rgba(255,255,255,0.5); text-align:center;">ассистент знает ваши замеры, питание и тренировки</div>
+
+                  <div style="width:100%; margin-top:22px; display:flex; align-items:center; gap:8px; background:rgba(48,42,34,0.34); backdrop-filter:blur(26px) saturate(1.4); -webkit-backdrop-filter:blur(26px) saturate(1.4); border-radius:999px; padding:8px 8px 8px 20px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.32), inset 0 0 0 1px rgba(255,243,219,0.08), 0 24px 56px -22px rgba(0,0,0,0.45);">
+                    <span style="flex:1; font-size:14px; color:rgba(255,255,255,0.4);">Спросите о питании…</span>
+                    <div style="width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none;" style-active="transform:scale(0.92);">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="M3.5 16.5 8.5 12l4 3.5 3.5-3 4.5 4"></path></svg>
+                    </div>
+                    <div style="width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none;" style-active="transform:scale(0.92);">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"></path></svg>
+                    </div>
+                    <div onClick="{{ startChat }}" style="width:40px; height:40px; border-radius:50%; background:linear-gradient(180deg,#FAF2E2,#EBDCC2); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; box-shadow:inset 0 1px 0 rgba(255,255,255,0.8), 0 0 18px rgba(240,230,214,0.35); transition:transform 0.15s ease;" style-active="transform:scale(0.92);">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" stroke="#1B1710" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </div>
+                  </div>
+
+                  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:16px;">
+                    <span onClick="{{ startChat }}" style="font-size:12.5px; color:rgba(255,255,255,0.8); background:rgba(46,40,33,0.30); backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); border-radius:999px; padding:9px 15px; cursor:pointer; box-shadow:inset 0 1px 0 rgba(255,243,219,0.26), inset 0 0 0 1px rgba(255,243,219,0.07), 0 12px 30px -12px rgba(0,0,0,0.4); transition:transform 0.15s ease;" style-active="transform:translateY(1.5px) scale(0.97);">Составь ужин на 600 ккал</span>
+                    <span onClick="{{ startChat }}" style="font-size:12.5px; color:rgba(255,255,255,0.8); background:rgba(46,40,33,0.30); backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); border-radius:999px; padding:9px 15px; cursor:pointer; box-shadow:inset 0 1px 0 rgba(255,243,219,0.26), inset 0 0 0 1px rgba(255,243,219,0.07), 0 12px 30px -12px rgba(0,0,0,0.4); transition:transform 0.15s ease;" style-active="transform:translateY(1.5px) scale(0.97);">Почему вес встал?</span>
+                    <span onClick="{{ startChat }}" style="font-size:12.5px; color:rgba(255,255,255,0.8); background:rgba(46,40,33,0.30); backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); border-radius:999px; padding:9px 15px; cursor:pointer; box-shadow:inset 0 1px 0 rgba(255,243,219,0.26), inset 0 0 0 1px rgba(255,243,219,0.07), 0 12px 30px -12px rgba(0,0,0,0.4); transition:transform 0.15s ease;" style-active="transform:translateY(1.5px) scale(0.97);">План на сегодня</span>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ══ ИИ-ЧАТ · ДИАЛОГ ══ -->
+            <sc-if value="{{ isChatThread }}" hint-placeholder-val="{{ false }}">
+              <div style="height:100%; display:flex; flex-direction:column; overflow:hidden; animation:screenIn 0.35s ease-out;">
+                <div style="padding:18px 20px 12px; display:flex; align-items:center; gap:12px;">
+                  <div style="width:38px; height:38px; border-radius:50%; background:rgba(240,230,214,0.1); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:center; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28);">
+                    <div style="width:9px; height:9px; border-radius:50%; background:var(--fit-accent); box-shadow:0 0 12px rgba(240,230,214,0.9);"></div>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="font-size:17px; font-weight:600;">Ассистент</div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.5);">знает ваши замеры и цели</div>
+                  </div>
+                  <div onClick="{{ resetChat }}" style="width:34px; height:34px; border-radius:50%; background:rgba(46,40,33,0.30); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:inset 0 1px 0 rgba(255,243,219,0.26); transition:transform 0.15s ease;" style-active="transform:scale(0.92);">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                  </div>
+                </div>
+                <div style="flex:1; overflow:auto; padding:6px 20px 12px; display:flex; flex-direction:column; gap:12px;">
+                  <div style="max-width:82%; align-self:flex-start; background:rgba(48,42,34,0.34); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border-radius:22px 22px 22px 8px; padding:12px 15px; font-size:14px; line-height:1.45; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 20px 48px -20px rgba(0,0,0,0.4); animation:cardIn 0.4s ease-out both; animation-delay:0.08s;">Доброе утро! Вес 82,4 кг — минус 0,6 за неделю, жир 18,2 %. Дефицит работает. Сегодня по плану спина + бицепс.</div>
+                  <div style="max-width:82%; align-self:flex-end; background:rgba(240,230,214,0.13); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border-radius:22px 22px 8px 22px; padding:12px 15px; font-size:14px; line-height:1.45; color:#F7F2E8; box-shadow:inset 0 1px 0 rgba(255,255,255,0.18), inset 0 0 0 1px rgba(240,230,214,0.1), 0 20px 48px -20px rgba(0,0,0,0.4); animation:cardIn 0.4s ease-out both; animation-delay:0.16s;">Почему вес встал на прошлой неделе?</div>
+                  <div style="max-width:82%; align-self:flex-start; background:rgba(48,42,34,0.34); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border-radius:22px 22px 22px 8px; padding:12px 15px; font-size:14px; line-height:1.45; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 20px 48px -20px rgba(0,0,0,0.4); animation:cardIn 0.4s ease-out both; animation-delay:0.24s;">С 24 по 30 июня вода выросла на 0,8 % — это удержание жидкости, не жир. Средний тренд за месяц: −0,5 кг в неделю. Всё по плану.</div>
+                  <div style="align-self:flex-end; display:flex; flex-direction:column; align-items:flex-end; gap:8px; animation:cardIn 0.4s ease-out both; animation-delay:0.32s;">
+                    <div style="width:170px; height:120px; border-radius:20px 20px 6px 20px; background:rgba(48,42,34,0.34); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 20px 48px -20px rgba(0,0,0,0.4);">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="M3.5 16.5 8.5 12l4 3.5 3.5-3 4.5 4"></path></svg>
+                      <span style="font-size:11px; color:rgba(255,255,255,0.45);">этикетка.jpg</span>
+                    </div>
+                    <div style="background:rgba(240,230,214,0.13); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border-radius:22px 22px 8px 22px; padding:12px 15px; font-size:14px; line-height:1.45; color:#F7F2E8; box-shadow:inset 0 1px 0 rgba(255,255,255,0.18), inset 0 0 0 1px rgba(240,230,214,0.1), 0 20px 48px -20px rgba(0,0,0,0.4);">Стоит брать?</div>
+                  </div>
+                  <div style="max-width:82%; align-self:flex-start; background:rgba(48,42,34,0.34); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border-radius:22px 22px 22px 8px; padding:12px 15px; font-size:14px; line-height:1.45; box-shadow:inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 20px 48px -20px rgba(0,0,0,0.4); animation:cardIn 0.4s ease-out both; animation-delay:0.4s;">Хороший состав: 22 г белка на 100 г, сахара всего 1,2 г. Впишется в сегодняшний остаток — берите.</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; padding:8px 16px 88px;">
+                  <div style="flex:1; display:flex; align-items:center; gap:6px; background:rgba(48,42,34,0.36); backdrop-filter:blur(26px) saturate(1.4); -webkit-backdrop-filter:blur(26px) saturate(1.4); border-radius:999px; padding:6px 6px 6px 18px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.32), inset 0 0 0 1px rgba(255,243,219,0.08), 0 20px 44px -18px rgba(0,0,0,0.45);">
+                    <span style="flex:1; font-size:14px; color:rgba(255,255,255,0.4);">Спросите о питании…</span>
+                    <div style="width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none;" style-active="transform:scale(0.92);">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="M3.5 16.5 8.5 12l4 3.5 3.5-3 4.5 4"></path></svg>
+                    </div>
+                    <div style="width:38px; height:38px; border-radius:50%; background:linear-gradient(180deg,#F4EAD6,#F0E4CD); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; box-shadow:0 1px 2px rgba(0,0,0,0.18); transition:transform 0.15s ease;" style-active="transform:scale(0.92);">
+                      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" stroke="#1B1710" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <!-- ══ ПЛАВАЮЩИЙ ТАБ-БАР ══ -->
+          <div style="position:absolute; left:50%; bottom:16px; transform:translateX(-50%); display:flex; align-items:center; gap:2px; padding:7px; border-radius:999px; background:rgba(44,39,32,0.40); backdrop-filter:blur(32px) saturate(1.5); -webkit-backdrop-filter:blur(32px) saturate(1.5); box-shadow:inset 0 1px 0 rgba(255,243,219,0.32), inset 0 0 0 1px rgba(255,243,219,0.08), 0 26px 60px -20px rgba(0,0,0,0.55); z-index:30;">
+            <sc-for list="{{ navTabs }}" as="t" hint-placeholder-count="4">
+              <div onClick="{{ t.onClick }}" style="{{ t.itemStyle }}" style-active="transform:translateY(1px) scale(0.95);">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="{{ t.color }}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="{{ t.iconStyle }}"><path d="{{ t.d }}"></path></svg>
+                <span style="font-size:10px; letter-spacing:0.2px; font-weight:500; color:{{ t.color }}; transition:color 0.2s;">{{ t.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- ══ ОВЕРЛЕЙ · ТАЙМЕР ОТДЫХА ══ -->
+          <sc-if value="{{ timerOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; inset:0; z-index:50; display:flex; align-items:center; justify-content:center;">
+              <div onClick="{{ closeTimer }}" style="position:absolute; inset:0; background:rgba(10,9,7,0.55); backdrop-filter:blur(8px) saturate(1.2); -webkit-backdrop-filter:blur(8px) saturate(1.2); animation:fadeIn 0.25s ease-out;"></div>
+              <div style="position:relative; width:270px; background:rgba(48,42,34,0.55); backdrop-filter:blur(30px) saturate(1.5); -webkit-backdrop-filter:blur(30px) saturate(1.5); border-radius:32px; padding:22px 20px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.32), inset 0 0 0 1px rgba(255,243,219,0.08), 0 40px 90px -30px rgba(0,0,0,0.7); animation:cardIn 0.35s ease-out;">
+                <div style="font-size:11px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Отдых · 2 минуты</div>
+                <div style="position:relative; width:150px; height:150px;">
+                  <svg width="150" height="150" viewBox="0 0 140 140" style="overflow:visible;">
+                    <circle cx="70" cy="70" r="62" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"></circle>
+                    <circle cx="70" cy="70" r="62" fill="none" stroke="var(--fit-accent)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="{{ timerDash }}" transform="rotate(-90 70 70)" style="filter:drop-shadow(0 0 5px rgba(240,230,214,0.7)); transition:stroke-dasharray 1s linear;"></circle>
+                  </svg>
+                  <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+                    <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:36px; font-weight:700;">{{ timerText }}</span>
+                  </div>
+                </div>
+                <div style="display:flex; gap:10px; width:100%;">
+                  <div onClick="{{ resetTimer }}" style="flex:1; text-align:center; padding:12px 0; border-radius:999px; font-size:13.5px; font-weight:500; color:rgba(255,255,255,0.85); background:rgba(255,255,255,0.07); cursor:pointer; box-shadow:inset 0 0 0 1px rgba(255,243,219,0.1); transition:transform 0.15s ease;" style-active="transform:translateY(1px);">Сначала</div>
+                  <div onClick="{{ toggleTimer }}" style="flex:1; text-align:center; padding:12px 0; border-radius:999px; font-size:13.5px; font-weight:600; color:#1B1710; background:linear-gradient(180deg,#F4EAD6,#F0E4CD); cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.18); transition:transform 0.15s ease;" style-active="transform:translateY(1px);">{{ timerBtnLabel }}</div>
+                </div>
+                <div onClick="{{ closeTimer }}" style="position:absolute; top:12px; right:12px; width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,0.07); display:flex; align-items:center; justify-content:center; cursor:pointer;" style-active="transform:scale(0.92);">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 2.5 9.5 9.5M9.5 2.5 2.5 9.5" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ══ BOTTOM SHEET · ЗАМЕР INBODY ══ -->
+          <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; inset:0; z-index:40;">
+              <div onClick="{{ closeSheet }}" style="position:absolute; inset:0; background:rgba(0,0,0,0.45); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); animation:fadeIn 0.25s ease-out;"></div>
+              <div style="position:absolute; left:8px; right:8px; bottom:8px; background:rgba(50,44,36,0.58); backdrop-filter:blur(40px) saturate(1.5); -webkit-backdrop-filter:blur(40px) saturate(1.5); border-radius:32px; padding:14px 20px 22px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.38), inset 0 0 0 1px rgba(255,243,219,0.09), 0 -20px 50px rgba(0,0,0,0.55); animation:sheetUp 0.35s cubic-bezier(0.22,1,0.36,1);">
+                <div style="width:40px; height:4px; border-radius:2px; background:rgba(255,255,255,0.2); margin:0 auto 14px;"></div>
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <div>
+                    <div style="font-size:11px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Замер InBody</div>
+                    <div style="font-size:18px; font-weight:600; margin-top:4px;">{{ sheet.date }}</div>
+                  </div>
+                  <div style="display:flex; align-items:baseline; gap:5px;">
+                    <span style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:34px; font-weight:700; line-height:1; text-shadow:0 0 20px rgba(240,230,214,0.25);">{{ sheet.w }}</span>
+                    <span style="font-size:14px; color:rgba(255,255,255,0.55);">кг</span>
+                  </div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px;">
+                  <div style="background:rgba(255,255,255,0.045); border-radius:16px; padding:10px 12px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.14);">
+                    <div style="font-size:11px; letter-spacing:0.6px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Жир</div>
+                    <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:19px; font-weight:600; margin-top:4px;">{{ sheet.fat }} %</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.045); border-radius:16px; padding:10px 12px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.14);">
+                    <div style="font-size:11px; letter-spacing:0.6px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Мышцы</div>
+                    <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:19px; font-weight:600; margin-top:4px;">{{ sheet.musc }} кг</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.045); border-radius:16px; padding:10px 12px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.14);">
+                    <div style="font-size:11px; letter-spacing:0.6px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Вода</div>
+                    <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:19px; font-weight:600; margin-top:4px;">{{ sheet.wat }} %</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.045); border-radius:16px; padding:10px 12px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.14);">
+                    <div style="font-size:11px; letter-spacing:0.6px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Висц. жир</div>
+                    <div style="font-family:'Space Grotesk','Golos Text',sans-serif; font-variant-numeric:tabular-nums; font-size:19px; font-weight:600; margin-top:4px;">{{ sheet.visc }} ур.</div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; margin-top:14px; background:rgba(255,255,255,0.045); border-radius:16px; padding:10px 12px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.14); cursor:pointer;">
+                  <div style="width:52px; height:68px; border-radius:12px; background:rgba(255,255,255,0.06); flex:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; box-shadow:inset 0 1px 0 rgba(255,243,219,0.22);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="M3.5 16.5 8.5 12l4 3.5 3.5-3 4.5 4"></path></svg>
+                    <span style="font-size:8px; letter-spacing:0.5px; color:rgba(255,255,255,0.4);">InBody</span>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px; font-weight:500;">{{ sheet.file }}</div>
+                    <div style="font-size:11.5px; color:rgba(255,255,255,0.45); margin-top:3px;">загруженный скриншот замера</div>
+                  </div>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3.5 9 7l-4 3.5" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </x-import>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#F0E6D6&quot;,&quot;#F3D9A6&quot;,&quot;#E2E8E0&quot;],&quot;default&quot;:&quot;#F0E6D6&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Стиль&quot;},&quot;goal&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Набор массы&quot;,&quot;Сушка&quot;],&quot;default&quot;:&quot;Сушка&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Тренировки&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.WORKOUT = [
+      { name: 'Тяга верхнего блока', equip: 'Блочный тренажёр',
+        sets: [{ w: '57,5', r: '10', lw: 55, lr: 10 }, { w: '57,5', r: '10', lw: 55, lr: 10 }, { w: '55', r: '12', lw: 55, lr: 12 }, { w: '', r: '', lw: 52.5, lr: 12 }],
+        hist: [47.5, 50, 50, 52.5, 55, 55, 57.5], best: '57,5 кг × 10', ton: '86 400',
+        tip: 'Вес растёт 2,5 кг каждые 2 недели — на следующей неделе попробуйте 60 кг на 8 повторов.' },
+      { name: 'Тяга штанги в наклоне', equip: 'Штанга',
+        sets: [{ w: '62,5', r: '8', lw: 60, lr: 8 }, { w: '60', r: '8', lw: 60, lr: 8 }, { w: '60', r: '8', lw: 60, lr: 8 }, { w: '', r: '', lw: 57.5, lr: 10 }],
+        hist: [50, 52.5, 55, 55, 57.5, 60, 62.5], best: '62,5 кг × 8', ton: '74 200',
+        tip: 'Рост +12,5 кг за 7 недель — отличный темп. Следите за техникой на последних подходах.' },
+      { name: 'Тяга горизонтального блока', equip: 'Блочный тренажёр',
+        sets: [{ w: '52,5', r: '12', lw: 50, lr: 12 }, { w: '50', r: '12', lw: 50, lr: 12 }, { w: '', r: '', lw: 50, lr: 10 }],
+        hist: [41, 43, 45, 45, 47.5, 50, 52.5], best: '52,5 кг × 12', ton: '58 900',
+        tip: 'На третьем подходе повторы падают до 10 — добавьте 30 секунд отдыха между подходами.' },
+      { name: 'Сгибания на бицепс', equip: 'Гантели',
+        sets: [{ w: '16', r: '12', lw: 16, lr: 12 }, { w: '16', r: '12', lw: 16, lr: 10 }, { w: '', r: '', lw: 14, lr: 12 }],
+        hist: [12, 12, 14, 14, 14, 16, 16], best: '16 кг × 12', ton: '21 300',
+        tip: 'Вес держится 2 недели — попробуйте 18 кг на первом подходе, пока руки свежие.' },
+    ];
+    this.IB = [
+      { date: '3 февраля', w: '86,1', fat: '21,4', musc: '36,2', wat: '54,2', visc: '9', file: 'inbody_03-02.jpg' },
+      { date: '14 апреля', w: '84,8', fat: '19,8', musc: '36,4', wat: '54,6', visc: '8', file: 'inbody_14-04.jpg' },
+      { date: '8 июня', w: '83,2', fat: '18,6', musc: '36,7', wat: '54,9', visc: '8', file: 'inbody_08-06.jpg' },
+      { date: '6 июля', w: '82,4', fat: '18,2', musc: '36,8', wat: '55,1', visc: '7', file: 'inbody_06-07.jpg' },
+    ];
+    this.METRICS = {
+      w:    { label: 'Текущий вес', unit: 'кг', dec: 1, series: [86.1, 85.5, 84.8, 84.2, 83.2, 82.4], delta: '0,6 кг · неделя', short: '0,6', dir: 'down', good: true, ib: 'w' },
+      fat:  { label: 'Жир', unit: '%', dec: 1, series: [21.4, 20.7, 19.8, 19.2, 18.6, 18.2], delta: '0,4 % · месяц', short: '0,4', dir: 'down', good: true, ib: 'fat' },
+      musc: { label: 'Мышцы', unit: 'кг', dec: 1, series: [36.2, 36.3, 36.4, 36.5, 36.7, 36.8], delta: '0,3 кг · месяц', short: '0,3', dir: 'up', good: true, ib: 'musc' },
+      wat:  { label: 'Вода', unit: '%', dec: 1, series: [54.2, 54.4, 54.6, 54.7, 54.9, 55.1], delta: '0,2 % · месяц', short: '0,2', dir: 'up', good: false, ib: 'wat' },
+      visc: { label: 'Висц. жир', unit: 'ур.', dec: 0, series: [9, 9, 8, 8, 8, 7], delta: '1 ур. · месяц', short: '1', dir: 'down', good: true, ib: 'visc' },
+    };
+    this.state = {
+      tab: 'diet', dietView: 'day', trainView: 'list', progressEx: 0, metric: 'w',
+      timerOpen: false, timerLeft: 120, timerRun: false,
+      ready: false, goal: null, selPoint: null, expanded: 'l', chatStarted: false,
+      eaten: { b: true, l: false, s: false, d: false },
+      done: { t1: true, t2: true, t3: false },
+      sets: this.WORKOUT.map(ex => ex.sets.map(s => ({ w: s.w, r: s.r }))),
+    };
+  }
+
+  componentDidMount() { this.applyAccent(); this.arm(); }
+  componentDidUpdate() { this.applyAccent(); }
+  componentWillUnmount() { clearTimeout(this._t); clearInterval(this._tk); cancelAnimationFrame(this._cr); }
+
+  applyAccent() {
+    document.documentElement.style.setProperty('--fit-accent', this.props.accent ?? '#F0E6D6');
+  }
+
+  arm() {
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ ready: true }), 90);
+  }
+
+  buzz() { if (navigator.vibrate) navigator.vibrate(8); }
+
+  setMetric(id) {
+    if (id === this.state.metric) return;
+    this.buzz();
+    const from = (this.state.chartSeries || this.METRICS[this.state.metric].series).slice();
+    const to = this.METRICS[id].series;
+    this.setState({ metric: id, selPoint: null });
+    cancelAnimationFrame(this._cr);
+    const t0 = performance.now(), dur = 550;
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      const e = 1 - Math.pow(1 - p, 3);
+      if (p < 1) {
+        this.setState({ chartSeries: from.map((v, i) => v + (to[i] - v) * e) });
+        this._cr = requestAnimationFrame(step);
+      } else {
+        this.setState({ chartSeries: null });
+      }
+    };
+    this._cr = requestAnimationFrame(step);
+  }
+
+  startTick() {
+    clearInterval(this._tk);
+    this._tk = setInterval(() => {
+      this.setState(s => {
+        if (!s.timerOpen || !s.timerRun) return null;
+        const left = s.timerLeft - 1;
+        if (left <= 0) { clearInterval(this._tk); if (navigator.vibrate) navigator.vibrate([60, 40, 60]); return { timerLeft: 0, timerRun: false }; }
+        return { timerLeft: left };
+      });
+    }, 1000);
+  }
+
+  setTab(t) {
+    if (t === this.state.tab) return;
+    this.buzz();
+    this.setState({ tab: t, ready: false, dietView: 'day', trainView: 'list', selPoint: null });
+    this.arm();
+  }
+
+  Counter = ({ value, decimals = 0, grouped = false, dur = 700 }) => {
+    const [v, setV] = React.useState(0);
+    const cur = React.useRef(0);
+    React.useEffect(() => {
+      const from = cur.current;
+      const t0 = performance.now();
+      let raf;
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const e = 1 - Math.pow(1 - p, 3);
+        const nv = from + (value - from) * e;
+        cur.current = nv;
+        setV(nv);
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+      return () => cancelAnimationFrame(raf);
+    }, [value]);
+    return decimals > 0
+      ? v.toFixed(decimals).replace('.', ',')
+      : (grouped ? Math.round(v).toLocaleString('ru-RU') : String(Math.round(v)));
+  };
+
+  renderVals() {
+    const { tab, dietView, trainView, progressEx, ready, eaten, done, expanded, selPoint, sets, chatStarted, metric, timerOpen, timerLeft, timerRun } = this.state;
+    const C = this.Counter;
+    const el = React.createElement;
+    const spring = 'cubic-bezier(0.34,1.56,0.64,1)';
+    const ru = (n) => String(n).replace('.', ',');
+    const fmt = (cal, p, f, c) => cal + ' ккал · Б ' + p + ' · Ж ' + f + ' · У ' + c;
+    const GLASS_BLUR = 'blur(24px) saturate(1.4)';
+
+    // ── Диета: приёмы пищи с блюдами ──
+    const MEALS = [
+      { id: 'b', time: '08:00', title: 'Завтрак', dishes: 'Овсянка с ягодами · омлет из 2 яиц', cal: 520, p: 34, f: 18, c: 52,
+        items: [{ n: 'Овсянка с ягодами и орехами', g: 250, cal: 320, p: 12, f: 9, c: 48 }, { n: 'Омлет из 2 яиц', g: 120, cal: 200, p: 22, f: 9, c: 4 }] },
+      { id: 'l', time: '13:00', title: 'Обед', dishes: 'Куриная грудка с гречкой и овощами', cal: 610, p: 48, f: 14, c: 58,
+        items: [{ n: 'Куриная грудка на гриле', g: 180, cal: 300, p: 40, f: 6, c: 0 }, { n: 'Гречка с овощами', g: 250, cal: 310, p: 8, f: 8, c: 58 }] },
+      { id: 's', time: '16:30', title: 'Перекус', dishes: 'Творог 5 % с мёдом и миндалём', cal: 280, p: 28, f: 8, c: 22,
+        items: [{ n: 'Творог 5 % с мёдом', g: 200, cal: 230, p: 24, f: 6, c: 20 }, { n: 'Миндаль', g: 10, cal: 50, p: 4, f: 2, c: 2 }] },
+      { id: 'd', time: '19:30', title: 'Ужин', dishes: 'Запечённый лосось с брокколи', cal: 540, p: 42, f: 26, c: 18,
+        items: [{ n: 'Запечённый лосось', g: 180, cal: 380, p: 36, f: 24, c: 0 }, { n: 'Брокколи на пару', g: 200, cal: 160, p: 6, f: 2, c: 18 }] },
+    ];
+    const currentId = (MEALS.find(m => !eaten[m.id]) || {}).id;
+    let calSum = 0, pSum = 0, fSum = 0, cSum = 0;
+    MEALS.forEach(m => { if (eaten[m.id]) { calSum += m.cal; pSum += m.p; fSum += m.f; cSum += m.c; } });
+
+    const meals = MEALS.map((m, i) => {
+      const isEaten = !!eaten[m.id];
+      const isCurrent = m.id === currentId;
+      const isOpen = expanded === m.id;
+      return {
+        ...m,
+        isCurrent, isOpen,
+        kbju: fmt(m.cal, m.p, m.f, m.c),
+        items: m.items.map(d => ({
+          name: d.n,
+          info: d.g + ' г · ' + fmt(d.cal, d.p, d.f, d.c),
+          swap: (e) => { e.stopPropagation(); this.buzz(); },
+        })),
+        expand: () => { this.buzz(); this.setState(s => ({ expanded: s.expanded === m.id ? null : m.id })); },
+        toggle: (e) => { e.stopPropagation(); this.buzz(); this.setState(s => ({ eaten: { ...s.eaten, [m.id]: !s.eaten[m.id] } })); },
+        cardStyle: {
+          background: 'rgba(46,40,33,0.30)',
+          backdropFilter: GLASS_BLUR, WebkitBackdropFilter: GLASS_BLUR,
+          borderRadius: 26, padding: '13px 15px', cursor: 'pointer',
+          boxShadow: isCurrent
+            ? 'inset 0 1px 0 rgba(255,243,219,0.42), inset 0 0 0 1px rgba(240,230,214,0.30), 0 0 30px -4px rgba(240,230,214,0.28), 0 30px 70px -26px rgba(0,0,0,0.5)'
+            : 'inset 0 1px 0 rgba(255,243,219,0.26), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42)',
+          transform: isCurrent ? 'translateY(-2px)' : 'none',
+          opacity: isEaten ? 0.55 : 1,
+          transition: 'opacity 0.3s ease, box-shadow 0.3s ease',
+          animation: 'cardIn 0.4s ease-out both',
+          animationDelay: (0.12 + i * 0.06).toFixed(2) + 's',
+        },
+        fillStyle: {
+          position: 'absolute', inset: -1.5, borderRadius: '50%', background: 'var(--fit-mint)',
+          boxShadow: '0 0 10px rgba(240,230,214,0.5)',
+          transform: isEaten ? 'scale(1)' : 'scale(0.4)', opacity: isEaten ? 1 : 0,
+          transition: 'transform 0.3s ' + spring + ', opacity 0.2s ease',
+        },
+        markStyle: { strokeDashoffset: isEaten ? 0 : 20, transition: 'stroke-dashoffset 0.25s ease-out 0.08s' },
+        timeStyle: {
+          fontFamily: "'Space Grotesk','Golos Text',sans-serif", fontVariantNumeric: 'tabular-nums', fontSize: 12.5, fontWeight: 600,
+          color: isCurrent ? 'var(--fit-accent)' : 'rgba(255,255,255,0.45)',
+          textShadow: isCurrent ? '0 0 12px rgba(240,230,214,0.45)' : 'none',
+        },
+        chevStyle: { flex: 'none', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s ' + spring },
+      };
+    });
+
+    // ── Задачи ──
+    const TASKS = [
+      { id: 't1', label: 'Выпить 2 л воды' },
+      { id: 't2', label: 'Белок в каждом приёме пищи' },
+      { id: 't3', label: 'Без сахара после 18:00' },
+    ];
+    const tasks = TASKS.map(t => {
+      const isDone = !!done[t.id];
+      return {
+        ...t,
+        toggle: () => { this.buzz(); this.setState(s => ({ done: { ...s.done, [t.id]: !s.done[t.id] } })); },
+        fillStyle: {
+          position: 'absolute', inset: -1.5, borderRadius: '50%', background: 'var(--fit-mint)',
+          boxShadow: '0 0 10px rgba(240,230,214,0.5)',
+          transform: isDone ? 'scale(1)' : 'scale(0.4)', opacity: isDone ? 1 : 0,
+          transition: 'transform 0.3s ' + spring + ', opacity 0.2s ease',
+        },
+        markStyle: { strokeDashoffset: isDone ? 0 : 20, transition: 'stroke-dashoffset 0.25s ease-out 0.08s' },
+        textStyle: { fontSize: 13.5, color: isDone ? 'rgba(255,255,255,0.45)' : '#F2EFE8', transition: 'color 0.3s ease' },
+      };
+    });
+
+    const barBase = { height: 6, borderRadius: 3, background: 'var(--fit-accent)', boxShadow: '0 0 8px rgba(240,230,214,0.55)', transition: 'width 0.6s cubic-bezier(0.22,1,0.36,1)' };
+    const pct = (v, max) => (ready ? Math.min(100, v / max * 100) : 0) + '%';
+    const ringDash = (ready ? (389.6 * Math.min(1, calSum / 1950)).toFixed(1) : 0) + ' 500';
+
+    // ── Тренировки: рабочие веса ──
+    const exercises = this.WORKOUT.map((ex, i) => {
+      const rows = sets[i].map((s, j) => {
+        const spec = ex.sets[j];
+        const wNum = parseFloat(String(s.w).replace(',', '.'));
+        const up = isFinite(wNum) && wNum > spec.lw;
+        const setVal = (key) => (e) => {
+          const v = e.target.value;
+          this.setState(st => {
+            const next = st.sets.map(a => a.map(b => ({ ...b })));
+            next[i][j][key] = v;
+            return { sets: next };
+          });
+        };
+        return {
+          idx: j + 1, w: s.w, r: s.r,
+          onW: setVal('w'), onR: setVal('r'),
+          stop: (e) => e.stopPropagation(),
+          arrowStyle: { fontSize: 10, width: 14, textAlign: 'center', color: 'var(--fit-mint)', opacity: up ? 1 : 0, transition: 'opacity 0.25s ease', filter: up ? 'drop-shadow(0 0 4px rgba(240,230,214,0.8))' : 'none', flex: 'none' },
+          last: 'прошлый раз: ' + ru(spec.lw) + ' кг × ' + spec.lr,
+        };
+      });
+      return {
+        name: ex.name, equip: ex.equip, sets: rows,
+        open: () => { this.buzz(); this.setState({ trainView: 'progress', progressEx: i }); },
+        cardStyle: {
+          background: 'rgba(46,40,33,0.30)',
+          backdropFilter: GLASS_BLUR, WebkitBackdropFilter: GLASS_BLUR,
+          borderRadius: 26, padding: '13px 16px',
+          boxShadow: 'inset 0 1px 0 rgba(255,243,219,0.26), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42)',
+          animation: 'cardIn 0.4s ease-out both', animationDelay: (0.08 + i * 0.07).toFixed(2) + 's',
+        },
+      };
+    });
+
+    // ── Прогресс упражнения ──
+    const pe = this.WORKOUT[progressEx];
+    const hist = pe.hist;
+    const mn = Math.min(...hist), mx = Math.max(...hist);
+    const X = (i) => (8 + i * (332 / (hist.length - 1))).toFixed(1);
+    const Y = (v) => (122 - (v - mn) / ((mx - mn) || 1) * 97).toFixed(1);
+    let path = 'M' + X(0) + ' ' + Y(hist[0]);
+    for (let i = 1; i < hist.length; i++) path += ' L' + X(i) + ' ' + Y(hist[i]);
+    const dots = hist.map((v, i) => 'M' + X(i) + ' ' + Y(v) + ' l0 0.01').join(' ');
+    const prog = {
+      name: pe.name, best: pe.best, ton: pe.ton, tip: pe.tip, path, dots,
+      cur: ru(hist[hist.length - 1]),
+      delta: '+' + ru(hist[hist.length - 1] - hist[0]) + ' кг за 7 недель',
+    };
+
+    // ── Тело: метрики, графики, точки InBody ──
+    const METRICS = this.METRICS;
+    const smooth = (series, W, top, bot) => {
+      const mn = Math.min(...series), mx = Math.max(...series);
+      const pad = (mx - mn) * 0.15 || 0.5;
+      const lo = mn - pad, hi = mx + pad;
+      const sy = v => bot - (v - lo) / (hi - lo) * (bot - top);
+      const P = series.map((v, i) => [i * W / (series.length - 1), sy(v)]);
+      const n = P.length - 1;
+      const S = [];
+      let d = 'M' + P[0][0].toFixed(1) + ' ' + P[0][1].toFixed(1);
+      for (let i = 0; i < n; i++) {
+        const a = P[Math.max(0, i - 1)], b = P[i], c = P[i + 1], e2 = P[Math.min(n, i + 2)];
+        const c1x = b[0] + (c[0] - a[0]) / 6, c1y = b[1] + (c[1] - a[1]) / 6;
+        const c2x = c[0] - (e2[0] - b[0]) / 6, c2y = c[1] - (e2[1] - b[1]) / 6;
+        d += ' C ' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ', ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) + ', ' + c[0].toFixed(1) + ' ' + c[1].toFixed(1);
+        for (let k = 0; k <= 24; k++) {
+          const t = k / 24, u = 1 - t;
+          S.push([u*u*u*b[0] + 3*u*u*t*c1x + 3*u*t*t*c2x + t*t*t*c[0], u*u*u*b[1] + 3*u*u*t*c1y + 3*u*t*t*c2y + t*t*t*c[1]]);
+        }
+      }
+      const at = (x) => {
+        let best = S[0];
+        for (const q of S) if (Math.abs(q[0] - x) < Math.abs(best[0] - x)) best = q;
+        return best[1];
+      };
+      return { d, sy, at };
+    };
+    const mCfg = METRICS[metric] || METRICS.w;
+    const mainChart = smooth(this.state.chartSeries || mCfg.series, 348, 20, 126);
+    const ibX = [8, 116, 232, 342];
+    const pts = this.IB.map((p, i) => ({
+      cx: ibX[i], cy: +mainChart.at(ibX[i]).toFixed(1),
+      onClick: () => { this.buzz(); this.setState({ selPoint: i }); },
+      r: selPoint === i ? 7 : 4.5,
+      style: {
+        fill: selPoint === i ? 'var(--fit-accent)' : '#151412',
+        stroke: 'var(--fit-accent)', strokeWidth: 2.5,
+        transition: 'r 0.25s ' + spring + ', fill 0.25s ease',
+        filter: 'drop-shadow(0 0 7px rgba(240,230,214,0.8))',
+      },
+    }));
+    const sheet = this.IB[selPoint == null ? 3 : selPoint];
+    const miniCards = ['w', 'fat', 'musc', 'wat', 'visc'].filter(id => id !== metric).map((id, i) => {
+      const c = METRICS[id];
+      const last = c.series[c.series.length - 1];
+      return {
+        label: c.label, unit: c.unit,
+        val: c.dec ? last.toFixed(c.dec).replace('.', ',') : String(last),
+        delta: (c.dir === 'down' ? '▼ ' : '▲ ') + c.short,
+        deltaStyle: { fontSize: 12, fontWeight: 600, color: c.good ? 'var(--fit-accent)' : 'rgba(255,255,255,0.45)', fontVariantNumeric: 'tabular-nums' },
+        spark: smooth(c.series, 62, 3, 19).d,
+        pick: () => this.setMetric(id),
+        cardStyle: {
+          background: 'rgba(46,40,33,0.30)', backdropFilter: 'blur(22px) saturate(1.4)', WebkitBackdropFilter: 'blur(22px) saturate(1.4)',
+          borderRadius: 22, padding: '13px 15px', cursor: 'pointer',
+          boxShadow: 'inset 0 1px 0 rgba(255,243,219,0.28), inset 0 0 0 1px rgba(255,243,219,0.07), 0 26px 60px -24px rgba(0,0,0,0.42)',
+          animation: 'cardIn 0.4s ease-out both', animationDelay: (0.14 + i * 0.06).toFixed(2) + 's',
+          transition: 'transform 0.15s ease',
+        },
+      };
+    });
+
+    // ── Переключатель цели ──
+    const goal = this.state.goal ?? this.props.goal ?? 'Сушка';
+    const bulk = goal === 'Набор массы';
+    const segBase = { flex: 1, textAlign: 'center', padding: '10px 0', borderRadius: 999, fontSize: 14, cursor: 'pointer', transition: 'background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease' };
+    const segOn = { ...segBase, background: 'linear-gradient(180deg,#F4EAD6,#F0E4CD)', color: '#1B1710', fontWeight: 600, boxShadow: '0 1px 2px rgba(0,0,0,0.18)' };
+    const segOff = { ...segBase, color: 'rgba(255,255,255,0.6)', fontWeight: 500 };
+
+    // ── Таб-бар ──
+    const NAV = [
+      { id: 'body', label: 'Тело', d: 'M12 11.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5Zm-7.5 9.5c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6' },
+      { id: 'diet', label: 'Диета', d: 'M12 3.5c.8 2.8 4.8 4.6 4.8 8.4a4.8 4.8 0 0 1-9.6 0c0-1.7.8-3 1.8-4.4.4 1.3 1.2 2 2.6 2.2-.8-2-.6-4.2.4-6.2Z' },
+      { id: 'train', label: 'Тренировки', d: 'M7 7v10M17 7v10M3.5 10v4M20.5 10v4M7 12h10' },
+      { id: 'chat', label: 'ИИ-чат', d: 'M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L3.5 20l1.1-4.3a8.5 8.5 0 1 1 15.9-4.2Z' },
+    ];
+    const navTabs = NAV.map(t => {
+      const active = t.id === tab;
+      return {
+        ...t,
+        onClick: () => this.setTab(t.id),
+        color: active ? 'var(--fit-accent)' : 'rgba(255,255,255,0.42)',
+        iconStyle: {
+          transition: 'stroke 0.2s',
+          animation: active ? 'tabPop 0.35s ' + spring : 'none',
+          filter: active ? 'drop-shadow(0 0 7px rgba(240,230,214,0.6))' : 'none',
+        },
+        itemStyle: {
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
+          width: 76, padding: '8px 0', borderRadius: 999, cursor: 'pointer',
+          background: active ? 'rgba(255,255,255,0.08)' : 'transparent',
+          boxShadow: active ? 'inset 0 1px 0 rgba(255,243,219,0.22)' : 'none',
+          transition: 'background 0.25s ease, transform 0.15s ease',
+        },
+      };
+    });
+
+    return {
+      isBody: tab === 'body',
+      isDietDay: tab === 'diet' && dietView === 'day',
+      isDietPlan: tab === 'diet' && dietView === 'plan',
+      isTrainList: tab === 'train' && trainView === 'list',
+      isTrainActive: tab === 'train' && trainView === 'active',
+      isTrainProgress: tab === 'train' && trainView === 'progress',
+      isChatEmpty: tab === 'chat' && !chatStarted,
+      isChatThread: tab === 'chat' && chatStarted,
+      startChat: () => { this.buzz(); this.setState({ chatStarted: true }); },
+      resetChat: () => { this.buzz(); this.setState({ chatStarted: false }); },
+      openPlan: () => { this.buzz(); this.setState({ dietView: 'plan' }); },
+      closePlan: () => { this.buzz(); this.setState({ dietView: 'day' }); },
+      startWorkout: () => { this.buzz(); this.setState({ trainView: 'active' }); },
+      endWorkout: () => { this.buzz(); this.setState({ trainView: 'list' }); },
+      closeProgress: () => { this.buzz(); this.setState({ trainView: 'active' }); },
+      navTabs,
+
+      // счётчики
+      calNum: el(C, { value: ready ? calSum : 0, grouped: true, dur: 600 }),
+
+      // диета
+      meals, tasks,
+      tasksDone: TASKS.filter(t => done[t.id]).length,
+      ringDash,
+      pText: pSum + ' / 150 г',
+      fText: fSum + ' / 65 г',
+      cText: cSum + ' / 150 г',
+      pBarStyle: { ...barBase, width: pct(pSum, 150) },
+      fBarStyle: { ...barBase, width: pct(fSum, 65), opacity: 0.65 },
+      cBarStyle: { ...barBase, width: pct(cSum, 150), opacity: 0.4 },
+
+      // тренировки
+      exercises, prog,
+      setBulk: () => { this.buzz(); this.setState({ goal: 'Набор массы' }); },
+      setCut: () => { this.buzz(); this.setState({ goal: 'Сушка' }); },
+      bulkStyleI: bulk ? segOn : segOff,
+      cutStyleI: bulk ? segOff : segOn,
+
+      // тело
+      pt1: pts[0], pt2: pts[1], pt3: pts[2], pt4: pts[3],
+      mainLabel: mCfg.label,
+      mainUnit: mCfg.unit,
+      mainNum: el(C, { key: metric, value: mCfg.series[5], decimals: mCfg.dec, dur: 800 }),
+      deltaText: mCfg.delta,
+      deltaArrowStyle: { transform: mCfg.dir === 'up' ? 'rotate(180deg)' : 'none', display: 'block' },
+      mainFill: mainChart.d + ' L 348 150 L 0 150 Z',
+      mainLine: mainChart.d,
+      miniCards,
+
+      // таймер отдыха
+      timerOpen,
+      openTimer: () => { this.buzz(); this.setState({ timerOpen: true, timerLeft: 120, timerRun: true }); this.startTick(); },
+      closeTimer: () => { this.buzz(); clearInterval(this._tk); this.setState({ timerOpen: false, timerRun: false }); },
+      toggleTimer: () => {
+        this.buzz();
+        if (this.state.timerLeft <= 0) { this.setState({ timerLeft: 120, timerRun: true }); this.startTick(); return; }
+        const run = !this.state.timerRun;
+        this.setState({ timerRun: run });
+        if (run) this.startTick(); else clearInterval(this._tk);
+      },
+      resetTimer: () => { this.buzz(); this.setState({ timerLeft: 120, timerRun: true }); this.startTick(); },
+      timerText: Math.floor(timerLeft / 60) + ':' + String(timerLeft % 60).padStart(2, '0'),
+      timerDash: (389.6 * timerLeft / 120).toFixed(1) + ' 500',
+      timerBtnLabel: timerLeft <= 0 ? 'Ещё раз' : (timerRun ? 'Пауза' : 'Продолжить'),
+      sheetOpen: tab === 'body' && selPoint != null,
+      closeSheet: () => { this.buzz(); this.setState({ selPoint: null }); },
+      sheet,
+    };
+  }
+}
+</script>
+</body>
+</html>

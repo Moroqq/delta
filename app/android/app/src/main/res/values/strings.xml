@@ -1,0 +1,7 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Дельта</string>
+    <string name="title_activity_main">Дельта</string>
+    <string name="package_name">com.aifitness.tracker</string>
+    <string name="custom_url_scheme">com.aifitness.tracker</string>
+</resources>

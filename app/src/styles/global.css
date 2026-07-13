@@ -1,0 +1,107 @@
+/* ── База ── */
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { display: none; }
+
+:root {
+  --fit-accent: #f0e6d6;
+  /* отступы под системные панели: Android (Capacitor SystemBars) инжектит
+     --safe-area-inset-*, iOS отдаёт env(); в браузере — 0 */
+  --safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #131211;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  /* поведение «как у приложения» в WebView */
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#root {
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+}
+
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* ── Анимации (значения из дизайн-хендоффа) ── */
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.99); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes drawLine {
+  from { stroke-dashoffset: 600; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes tabPop {
+  0% { transform: scale(0.82); }
+  60% { transform: scale(1.14); }
+  100% { transform: scale(1); }
+}
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+@keyframes expandIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes blobA {
+  0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+  50% { transform: scale(1.15) translate(10px, -14px); opacity: 1; }
+}
+@keyframes blobB {
+  0%, 100% { transform: scale(1.1) translate(0, 0); opacity: 0.65; }
+  50% { transform: scale(0.95) translate(-14px, 10px); opacity: 0.9; }
+}
+@keyframes blobC {
+  0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.6; }
+  50% { transform: scale(1.18) translate(8px, -10px); opacity: 0.9; }
+}
+@keyframes beamBreath {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes typingDot {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 0.9; transform: translateY(-2px); }
+}
